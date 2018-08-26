@@ -32,6 +32,7 @@
  export CLONE_IT_PROJECTS_LLC=${CLONE_IT_PROJECTS_LLC:-"no"}
  export CLONE_OCA=${CLONE_OCA:-"no"}
  export CLONE_ODOO=${CLONE_ODOO:-"no"}
+ export CLONE_FACT_CL=${CLONE_FACT_CL:-"no"}
 
  ## Docker Names
  export ODOO_DOCKER=${ODOO_DOCKER:-"odoo"}
@@ -305,7 +306,15 @@
      REPOS=( "${REPOS[@]}" "https://github.com/it-projects-llc/odoo-saas-tools.git it-projects-llc/odoo-saas-tools")
      REPOS=( "${REPOS[@]}" "https://github.com/it-projects-llc/odoo-telegram.git it-projects-llc/odoo-telegram")
  fi
-
+ 
+ if [[ "$CLONE_FACT_CL" == "yes" ]]
+ then
+     REPOS=( "${REPOS[@]}" "https://gitlab.com/dansanti/l10n_cl_dte_point_of_sale.git it-projects-llc/pos-addons")
+     REPOS=( "${REPOS[@]}" "https://gitlab.com/dansanti/l10n_cl_fe.git it-projects-llc/pos-addons") 
+     REPOS=( "${REPOS[@]}" "https://gitlab.com/dansanti/payment_khipu.git it-projects-llc/pos-addons") 
+     REPOS=( "${REPOS[@]}" "https://gitlab.com/dansanti/payment_webpay.git it-projects-llc/pos-addons") 
+     REPOS=( "${REPOS[@]}" "https://gitlab.com/dansanti/addons-konos.git it-projects-llc/pos-addons") 
+ fi
  if [[ "${REPOS}" != "" ]]
  then
      apt-get install -y git
